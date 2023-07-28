@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="backgroundContainer">
+      <div id="mainContainer">
+        <div id="loversContainer">
+          <img class="avatar" id="avatar1" src="/img/blankAvatar.png" alt="avatar"/>
+          <h1 id="plus">+</h1>
+          <img class="avatar" id="avatar2" src="/img/blankAvatar.png" alt="avatar"/>
+        </div>
+        <div id="dates">
+          <div id="dateForm">
+            <h1 id="togetherText">Together since </h1>
+            <form method="post" action="" id="form">
+              <label>
+                <input name="day" value="DD" maxlength='2' class="formInput" id="dayInput"/>
+                <h6 class="error" id="dayError"></h6>
+              </label>
+              <label>
+                <input name="month" value="MM" maxlength='2' class="formInput" id="monthInput"/>
+                <h6 class="error" id="monthError"></h6>
+              </label>
+              <label>
+                <input name="year" value="YYYY" maxlength='4' class="formInput" id="yearInput"/>
+                <h6 class="error" id="yearError"></h6>
+              </label>
+              <button id="button" type="submit" class="formButton"></button>
+            </form>
+          </div>
+
+          <h1 id="relationshipAge">-</h1>
+          <h3>or</h3>
+          <h1 id="relationshipAgeInMonth">-</h1>
+          <h3>or</h3>
+          <h1 id="relationshipAgeInDays">-</h1>
+
+        </div>
+
+      </div>
+
+    </div>
+    <script type="module" src="/src/js/relationshipAgeCalculation.js"></script>
+    <script src="src/js/inputDefaultValue.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

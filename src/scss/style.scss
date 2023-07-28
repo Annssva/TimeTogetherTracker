@@ -1,0 +1,97 @@
+@import 'normalize.css';
+
+#backgroundContainer {
+  background-color: #e0cacb;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  #mainContainer {
+    background-color: white;
+    box-shadow: 20px 10px 5px #c9b5b6;
+    width: 90vw;
+    border-radius: 3em;
+
+    #loversContainer {
+      padding-top: 1em;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin: 0;
+      .avatar {
+        height: 100px;
+      }
+      #plus{
+        font-weight: bold;
+        font-size: 45px;
+      }
+    }
+
+    #dates {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      #dateForm{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        //place-items: center;
+        #togetherText{
+          margin: 0;
+          //vertical-align: middle;
+        }
+        #form{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          label{
+            display: flex;
+            flex-direction: column;
+            padding: 0.3em;
+            .formInput{
+              width: 2.3em;
+              height: 2.2em;
+              //border-color: #ce4f71;
+              border: 3px solid #ce4f71;
+              border-radius: 0.5em;
+              &:focus{
+              }
+            }
+            #yearInput{
+              width: 3em;
+            }
+            .error{
+              color: red;
+              height: 0.5em;
+              margin-block-start: 0;
+              margin-block-end: 0;
+              font-size: 0.64em;
+            }
+          }
+          #button{
+            height: 6vh;
+            width: 6vh;
+            background-image: url("/public/img/button.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            text-indent: -9999px;
+            border-radius: 3em;
+            border: none;
+            margin: 1em 1em 1em 2em;
+            &:hover{
+              background-image: url("/public/img/hoverButton.png");
+            }
+            &:active{
+              background-image: url("/public/img/activeButton.png");
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//background-image: url("/path/to/your/image.png");
