@@ -9,10 +9,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  #title{
+    font-size: 5em;
+    color: #ce4f71;
+    font-family: 'Roboto', sans-serif;
+  }
   #mainContainer {
     background-color: white;
     box-shadow: 20px 10px 5px #c9b5b6;
-    width: 90vw;
+    width: 80vw;
     border-radius: 3em;
 
     #loversContainer {
@@ -25,8 +30,9 @@
         height: 100px;
       }
       #plus{
-        font-weight: bold;
+        //font-weight: bold;
         font-size: 45px;
+        font-family: 'Roboto', sans-serif;
       }
     }
 
@@ -41,6 +47,7 @@
         //place-items: center;
         #togetherText{
           margin: 0;
+          font-family: 'Roboto', sans-serif;
           //vertical-align: middle;
         }
         #form{
@@ -69,6 +76,7 @@
               margin-block-start: 0;
               margin-block-end: 0;
               font-size: 0.64em;
+              font-family: 'Roboto', sans-serif;
             }
           }
           #button{
@@ -90,6 +98,11 @@
             }
           }
         }
+      }
+      .resultText, .orText{
+        margin: 0 0 0.6em 0;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
       }
     }
   }
