@@ -2,30 +2,36 @@
 
 #backgroundContainer {
   background-color: #e0cacb;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw!important;
+  height: 100vh!important;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   #title{
     font-size: 5em;
     color: #ce4f71;
     font-family: 'Roboto', sans-serif;
+
   }
   #mainContainer {
     background-color: white;
     box-shadow: 20px 10px 5px #c9b5b6;
-    width: 80vw;
+    width: 50vw;
     border-radius: 3em;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     #loversContainer {
       padding-top: 1em;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      margin: 0;
+      margin: 0.6em 0 0 0;
       .avatar {
         height: 100px;
       }
@@ -45,30 +51,41 @@
         flex-direction: row;
         justify-content: space-around;
         //place-items: center;
+        align-items: center;
+        padding-bottom: 0.5em;
         #togetherText{
           margin: 0;
           font-family: 'Roboto', sans-serif;
-          //vertical-align: middle;
+          vertical-align: middle;
+          display: flex;
+          align-items: center;
         }
         #form{
           display: flex;
           flex-direction: row;
+          align-items: center;
           justify-content: space-between;
+
           label{
             display: flex;
             flex-direction: column;
-            padding: 0.3em;
+            align-items: center;
+            padding: 0.7em 0.3em 0.3em 0.3em;
             .formInput{
+              display: flex;
+              align-items: center;
               width: 2.3em;
               height: 2.2em;
-              //border-color: #ce4f71;
               border: 3px solid #ce4f71;
               border-radius: 0.5em;
+              text-align: center;
+              font-family: 'Roboto', sans-serif;
+              margin: 0;
               &:focus{
               }
             }
             #yearInput{
-              width: 3em;
+              width: 3.3em;
             }
             .error{
               color: red;
@@ -89,7 +106,7 @@
             text-indent: -9999px;
             border-radius: 3em;
             border: none;
-            margin: 1em 1em 1em 2em;
+            margin: 0.3em 1em 0.5em 1.5em;
             &:hover{
               background-image: url("/public/img/hoverButton.png");
             }
@@ -99,10 +116,18 @@
           }
         }
       }
-      .resultText, .orText{
-        margin: 0 0 0.6em 0;
+      .resultText{
+        margin: 0 0 0.5em 0;
         font-family: 'Roboto', sans-serif;
         font-weight: normal;
+        font-size: 25px;
+      }
+      .orText{
+        margin: 0 0 0.5em 0;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
+        font-size: 18px;
+
       }
     }
   }
