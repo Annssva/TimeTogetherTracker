@@ -7,10 +7,11 @@
 }
 @font-face{
   font-family: 'Poppins';
-  src:url('public/fonts/Poppins-Bold.ttf');
+  src:url('public/fonts/Poppins-BoldItalic.ttf');
   font-weight: bold;
   font-style: normal;
 }
+
 $mainFont: 'Poppins';
 
 #backgroundContainer {
@@ -104,7 +105,7 @@ $mainFont: 'Poppins';
             text-indent: -9999px;
             border-radius: 3em;
             border: none;
-            margin: 0.3em 1em 0.5em 1.5em;
+            margin: 0.3em 1em 0.3em 1.5em;
             &:hover{
               background-image: url("/public/img/hoverButton.png");
             }
@@ -136,6 +137,7 @@ $mainFont: 'Poppins';
           #relationshipAgeInMonth, #relationshipAgeInDays, #relationshipAgeYears, #relationshipAgeMonths, #relationshipAgeDays{
             color: #ce4f71;
             font-weight: bold;
+            font-size: 30px;
           }
         }
         .orText {
