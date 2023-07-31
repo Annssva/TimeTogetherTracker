@@ -51,6 +51,11 @@ button.addEventListener("click", function (event) {
         document.getElementById("monthInput").value === '5' ||
         document.getElementById("monthInput").value === '7' ||
         document.getElementById("monthInput").value === '8' ||
+        document.getElementById("monthInput").value === '01' ||
+        document.getElementById("monthInput").value === '03' ||
+        document.getElementById("monthInput").value === '05' ||
+        document.getElementById("monthInput").value === '07' ||
+        document.getElementById("monthInput").value === '08' ||
         document.getElementById("monthInput").value === '10' ||
         document.getElementById("monthInput").value === '12') &&
         (document.getElementById("dayInput").value >= 1
@@ -64,7 +69,10 @@ button.addEventListener("click", function (event) {
     } else if ((document.getElementById("monthInput").value === '4' ||
         document.getElementById("monthInput").value === '6' ||
         document.getElementById("monthInput").value === '9' ||
-        document.getElementById("monthInput").value === '11') &&
+        document.getElementById("monthInput").value === '11' ||
+        document.getElementById("monthInput").value === '04' ||
+        document.getElementById("monthInput").value === '06' ||
+        document.getElementById("monthInput").value === '09') &&
         (document.getElementById("dayInput").value >= 1
             && document.getElementById("dayInput").value <= 30)){
         dayValue = document.getElementById("dayInput").value;
@@ -72,7 +80,8 @@ button.addEventListener("click", function (event) {
         document.getElementById("dayError").textContent = "";
         const input = document.getElementById('dayInput');
         input.style.border = normalBorderStyle;
-    } else if (document.getElementById("monthInput").value === '2' &&
+    } else if ((document.getElementById("monthInput").value === '2' ||
+        document.getElementById("monthInput").value === '02') &&
         isLeapYear(document.getElementById("yearInput").value) &&
         (document.getElementById("dayInput").value >= 1 &&
             document.getElementById("dayInput").value <= 29)){
@@ -81,7 +90,8 @@ button.addEventListener("click", function (event) {
         document.getElementById("dayError").textContent = "";
         const input = document.getElementById('dayInput');
         input.style.border = normalBorderStyle;
-    } else if (document.getElementById("monthInput").value === '2' &&
+    } else if ((document.getElementById("monthInput").value === '2' ||
+            document.getElementById("monthInput").value === '02') &&
         !isLeapYear(document.getElementById("yearInput").value) &&
         (document.getElementById("dayInput").value >= 1 &&
             document.getElementById("dayInput").value <= 28)){
