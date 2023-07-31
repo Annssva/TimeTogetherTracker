@@ -11,9 +11,6 @@ let dayValue;
 let monthValue;
 let yearValue;
 const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
-const currentMonth = currentDate.getMonth(); // Adding 1 because getMonth() returns zero-based index
-const currentDay = currentDate.getDate();
 
 // функция проверки год на високосность
 function isLeapYear(year) {
@@ -165,11 +162,23 @@ button.addEventListener("click", function (event) {
     const yearsDifference = differenceInYears(currentDate, fullDate);
 
     // Далее вызывается функция для подсчета разница в датах в полных днях, месяцах и годах и выводятся все разницы на экран
-    document.getElementById("relationshipAge").textContent =
-        `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[2]} year(s), 
-        ${calculateDifference(daysDifference, monthsDifference, yearsDifference)[1]} month(s), 
-        ${calculateDifference(daysDifference, monthsDifference, yearsDifference)[0]} day(s)`;
-    document.getElementById('relationshipAgeInMonth').textContent = `${monthsDifference} month(s)`;
-    document.getElementById('relationshipAgeInDays').textContent = `${daysDifference} day(s)`;
+    // document.getElementById("relationshipAge").textContent =
+    //     `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[2]} year(s),
+    //     ${calculateDifference(daysDifference, monthsDifference, yearsDifference)[1]} month(s),
+    //     ${calculateDifference(daysDifference, monthsDifference, yearsDifference)[0]} day(s)`;
 
+    // document.getElementById('relationshipAgeInMonth').textContent = `${monthsDifference} month(s)`;
+    // document.getElementById('relationshipAgeInDays').textContent = `${daysDifference} day(s)`;
+
+    document.getElementById('relationshipAgeYears').textContent = `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[2]}`;
+    document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
+    document.getElementById('relationshipAgeMonths').textContent = `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[1]}`;
+    document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
+    document.getElementById('relationshipAgeDays').textContent = `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[0]}`;
+    document.getElementById('textFullDays').textContent = '\u00A0days';
+
+    document.getElementById('relationshipAgeInMonth').textContent = `${monthsDifference} `;
+    document.getElementById('textMonth').textContent = '\u00A0months';
+    document.getElementById('relationshipAgeInDays').textContent = `${daysDifference} `;
+    document.getElementById('textDays').textContent = '\u00A0days';
 });
