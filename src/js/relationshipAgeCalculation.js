@@ -146,6 +146,9 @@ button.addEventListener("click", function (event) {
         document.getElementById("monthError").textContent === errorText ||
         document.getElementById("dayError").textContent === errorText){
         return;
+    } else {
+        const popup = document.getElementById("popupText");
+        popup.classList.remove("show");
     }
 
     // если ошибок пока не было, то собирается полная дата и проверяется, не является ли эта дата большей,
