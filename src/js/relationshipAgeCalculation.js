@@ -38,15 +38,44 @@ function calculateDifference(difInDays, difInMonth, difInYears){
 }
 
 // функция для показа popup-а с подробностями об ошибке
-function popupShowFunction() {
+function popupShowFunction(errorText) {
     const popup = document.getElementById("popupText");
     popup.classList.add("show");
+    popup.textContent = errorText;
 }
 
 // основная функция, которая обрабатывает введенные значения в поля и запускает функцию расчета возраста отношений,
 // запускающаяся при нажатии на кнопку
 button.addEventListener("click", function (event) {
     event.preventDefault(); // Prevent the form from submitting
+
+    document.getElementById('relationshipAgeYears').textContent = '';
+    document.getElementById('textFullYears').textContent = '-';
+    document.getElementById('relationshipAgeMonths').textContent = '';
+    document.getElementById('textFullMonths').textContent = '';
+    document.getElementById('relationshipAgeDays').textContent = '';
+    document.getElementById('textFullDays').textContent = '';
+    document.getElementById('relationshipAgeInMonth').textContent = '';
+    document.getElementById('textMonth').textContent = '-';
+    document.getElementById('relationshipAgeInDays').textContent = '';
+    document.getElementById('textDays').textContent = '';
+
+    if(document.getElementById("yearInput").value === 'YYYY' &&
+        document.getElementById("monthInput").value === 'MM' &&
+        document.getElementById("dayInput").value === 'DD'){
+
+        document.getElementById("yearError").textContent = errorText;
+        document.getElementById("monthError").textContent = errorText;
+        document.getElementById("dayError").textContent = errorText;
+        const dayInput = document.getElementById('dayInput');
+        dayInput.style.border = errorBorderStyle;
+        const monthInput = document.getElementById('monthInput');
+        monthInput.style.border = errorBorderStyle;
+        const yearInput = document.getElementById('yearInput');
+        yearInput.style.border = errorBorderStyle;
+        popupShowFunction('Fields are not filled!');
+        return;
+    }
 
     // проверка значения дня
     if ((document.getElementById("monthInput").value === '1' ||
@@ -107,7 +136,8 @@ button.addEventListener("click", function (event) {
         document.getElementById("dayError").textContent = errorText;
         const input = document.getElementById('dayInput');
         input.style.border = errorBorderStyle;
-        popupShowFunction();
+        popupShowFunction('Invalid day value!');
+        // неверное значение дней
     }
 
     // проверка значения месяца
@@ -123,7 +153,8 @@ button.addEventListener("click", function (event) {
         document.getElementById("monthError").textContent = errorText;
         const input = document.getElementById('monthInput');
         input.style.border = errorBorderStyle;
-        popupShowFunction();
+        popupShowFunction('Invalid month value!');
+        // неверное значение месяца
     }
 
     // проверка значения года
@@ -138,7 +169,8 @@ button.addEventListener("click", function (event) {
         document.getElementById("yearError").textContent = errorText;
         const input = document.getElementById('yearInput');
         input.style.border = errorBorderStyle;
-        popupShowFunction();
+        popupShowFunction('Invalid year value!');
+        // неверное значение года!
     }
 
     // далее, если какой-то элемент получил ошибку при неверном значении, функция останавливается
@@ -165,7 +197,8 @@ button.addEventListener("click", function (event) {
         monthInput.style.border = errorBorderStyle;
         const yearInput = document.getElementById('yearInput');
         yearInput.style.border = errorBorderStyle;
-        popupShowFunction();
+        popupShowFunction('The entered date cannot be greater than the current one!');
+        // вводимая дата не может быть больше текущей!
         return;
     }
 
