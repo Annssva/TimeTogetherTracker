@@ -37,6 +37,12 @@ function calculateDifference(difInDays, difInMonth, difInYears){
     return [daysDifference, monthsDifference, yearsDifference];
 }
 
+// функция для показа popup-а с подробностями об ошибке
+function popupShowFunction() {
+    const popup = document.getElementById("popupText");
+    popup.classList.add("show");
+}
+
 // основная функция, которая обрабатывает введенные значения в поля и запускает функцию расчета возраста отношений,
 // запускающаяся при нажатии на кнопку
 button.addEventListener("click", function (event) {
@@ -101,6 +107,7 @@ button.addEventListener("click", function (event) {
         document.getElementById("dayError").textContent = errorText;
         const input = document.getElementById('dayInput');
         input.style.border = errorBorderStyle;
+        popupShowFunction();
     }
 
     // проверка значения месяца
@@ -116,6 +123,7 @@ button.addEventListener("click", function (event) {
         document.getElementById("monthError").textContent = errorText;
         const input = document.getElementById('monthInput');
         input.style.border = errorBorderStyle;
+        popupShowFunction();
     }
 
     // проверка значения года
@@ -130,6 +138,7 @@ button.addEventListener("click", function (event) {
         document.getElementById("yearError").textContent = errorText;
         const input = document.getElementById('yearInput');
         input.style.border = errorBorderStyle;
+        popupShowFunction();
     }
 
     // далее, если какой-то элемент получил ошибку при неверном значении, функция останавливается
@@ -153,6 +162,7 @@ button.addEventListener("click", function (event) {
         monthInput.style.border = errorBorderStyle;
         const yearInput = document.getElementById('yearInput');
         yearInput.style.border = errorBorderStyle;
+        popupShowFunction();
         return;
     }
 

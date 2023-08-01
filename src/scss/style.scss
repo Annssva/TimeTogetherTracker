@@ -156,4 +156,49 @@ $mainFont: 'Poppins';
 
     }
   }
+  .popup {
+  //  position: fixed;
+  //  top: 43.7%;
+  //  left: 80vw;
+    .popupError {
+      visibility: hidden;
+      width: 160px;
+      background-color: red;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      z-index: 1;
+      position: fixed;
+      top: 43%;
+      left: 80vw;
+      font-family: $mainFont;
+      // Popup arrow
+      &::after {
+        content: "";
+        position: absolute;
+        top: 25%;
+        right: 101%;
+        margin-right: -5px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: red transparent transparent transparent;
+        transform: rotate(90deg);
+      }
+    }
+    .show {
+      visibility: visible;
+      animation: fadeIn 1s;
+      //.popupError{
+      //
+      //}
+
+      //-webkit-animation: fadeIn 1s;
+
+    }
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
 }
