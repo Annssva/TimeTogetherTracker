@@ -161,21 +161,88 @@ button.addEventListener("click", function (event) {
     const daysDifference = differenceInDays(currentDate, fullDate);
     const yearsDifference = differenceInYears(currentDate, fullDate);
 
-    // Далее вызывается функция для подсчета разница в датах в полных днях, месяцах и годах и выводятся все разницы на экран
-    // document.getElementById("relationshipAge").textContent =
-    //     `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[2]} year(s),
-    //     ${calculateDifference(daysDifference, monthsDifference, yearsDifference)[1]} month(s),
-    //     ${calculateDifference(daysDifference, monthsDifference, yearsDifference)[0]} day(s)`;
+    const fullAgeYears = calculateDifference(daysDifference, monthsDifference, yearsDifference)[2];
+    const fullAgeMonths = calculateDifference(daysDifference, monthsDifference, yearsDifference)[1];
+    const fullAgeDays = calculateDifference(daysDifference, monthsDifference, yearsDifference)[0]
 
-    // document.getElementById('relationshipAgeInMonth').textContent = `${monthsDifference} month(s)`;
-    // document.getElementById('relationshipAgeInDays').textContent = `${daysDifference} day(s)`;
-
-    document.getElementById('relationshipAgeYears').textContent = `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[2]}`;
-    document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
-    document.getElementById('relationshipAgeMonths').textContent = `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[1]}`;
-    document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
-    document.getElementById('relationshipAgeDays').textContent = `${calculateDifference(daysDifference, monthsDifference, yearsDifference)[0]}`;
-    document.getElementById('textFullDays').textContent = '\u00A0days';
+    if (fullAgeYears !== 0 &&
+        fullAgeMonths !== 0 &&
+        fullAgeDays !== 0
+        ){
+        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
+        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
+        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
+        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
+        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
+        document.getElementById('textFullDays').textContent = '\u00A0days';
+    } else if (fullAgeYears === 0 &&
+        fullAgeMonths !== 0 &&
+        fullAgeDays !== 0
+    ){
+        document.getElementById('relationshipAgeYears').textContent = '';
+        document.getElementById('textFullYears').textContent = '';
+        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
+        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
+        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
+        document.getElementById('textFullDays').textContent = '\u00A0days';
+    }else if (fullAgeYears !== 0 &&
+        fullAgeMonths === 0 &&
+        fullAgeDays !== 0
+    ){
+        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
+        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
+        document.getElementById('relationshipAgeMonths').textContent = '';
+        document.getElementById('textFullMonths').textContent = '';
+        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
+        document.getElementById('textFullDays').textContent = '\u00A0days';
+    } else if (fullAgeYears !== 0 &&
+        fullAgeMonths !== 0 &&
+        fullAgeDays === 0
+    ){
+        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
+        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
+        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
+        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
+        document.getElementById('relationshipAgeDays').textContent = '';
+        document.getElementById('textFullDays').textContent = '';
+    } else if (fullAgeYears === 0 &&
+        fullAgeMonths === 0 &&
+        fullAgeDays !== 0
+    ){
+        document.getElementById('relationshipAgeYears').textContent = '';
+        document.getElementById('textFullYears').textContent = '';
+        document.getElementById('relationshipAgeMonths').textContent = '';
+        document.getElementById('textFullMonths').textContent = '';
+        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
+        document.getElementById('textFullDays').textContent = '\u00A0days';
+    } else if (fullAgeYears === 0 &&
+        fullAgeMonths !== 0 &&
+        fullAgeDays === 0
+    ){
+        document.getElementById('relationshipAgeYears').textContent = '';
+        document.getElementById('textFullYears').textContent = '';
+        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
+        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
+        document.getElementById('relationshipAgeDays').textContent = '';
+        document.getElementById('textFullDays').textContent = '';
+    } else if (fullAgeYears !== 0 &&
+        fullAgeMonths === 0 &&
+        fullAgeDays === 0
+    ){
+        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
+        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
+        document.getElementById('relationshipAgeMonths').textContent = '';
+        document.getElementById('textFullMonths').textContent = '';
+        document.getElementById('relationshipAgeDays').textContent = '';
+        document.getElementById('textFullDays').textContent = '';
+    } else{
+        document.getElementById('relationshipAgeYears').textContent = '';
+        document.getElementById('textFullYears').textContent = '';
+        document.getElementById('relationshipAgeMonths').textContent = '';
+        document.getElementById('textFullMonths').textContent = '';
+        document.getElementById('relationshipAgeDays').textContent = ``;
+        document.getElementById('textFullDays').textContent = 'not enough time has passed :(';
+    }
 
     document.getElementById('relationshipAgeInMonth').textContent = `${monthsDifference} `;
     document.getElementById('textMonth').textContent = '\u00A0months';
