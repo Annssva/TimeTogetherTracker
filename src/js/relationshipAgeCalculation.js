@@ -1,10 +1,10 @@
-import { differenceInYears, differenceInMonths, differenceInDays } from 'date-fns';
+import {differenceInDays, differenceInMonths, differenceInYears} from 'date-fns';
 
 
 // Проверка введенных значений, их обработка и получение значений возраста отношений
 
 const button = document.getElementById("button");
-const errorText = 'Incorrect!';
+const errorText = 'Error!';
 const errorBorderStyle = '3px solid red';
 const normalBorderStyle = '3px solid #ce4f71'
 let dayValue;
@@ -38,10 +38,10 @@ function calculateDifference(difInDays, difInMonth, difInYears){
 }
 
 // функция для показа popup-а с подробностями об ошибке
-function popupShowFunction(errorText) {
+function popupShowFunction(errors) {
     const popup = document.getElementById("popupText");
+    popup.innerHTML = errors.join('<br>');
     popup.classList.add("show");
-    popup.textContent = errorText;
 }
 
 // основная функция, которая обрабатывает введенные значения в поля и запускает функцию расчета возраста отношений,
@@ -60,6 +60,8 @@ button.addEventListener("click", function (event) {
     document.getElementById('relationshipAgeInDays').textContent = '';
     document.getElementById('textDays').textContent = '';
 
+    let errorsForPopup = [];
+
     if(document.getElementById("yearInput").value === 'YYYY' &&
         document.getElementById("monthInput").value === 'MM' &&
         document.getElementById("dayInput").value === 'DD'){
@@ -73,7 +75,8 @@ button.addEventListener("click", function (event) {
         monthInput.style.border = errorBorderStyle;
         const yearInput = document.getElementById('yearInput');
         yearInput.style.border = errorBorderStyle;
-        popupShowFunction('Fields are not filled!');
+        errorsForPopup.push('- Fields are not filled!');
+        popupShowFunction(errorsForPopup);
         return;
     }
 
@@ -136,8 +139,8 @@ button.addEventListener("click", function (event) {
         document.getElementById("dayError").textContent = errorText;
         const input = document.getElementById('dayInput');
         input.style.border = errorBorderStyle;
-        popupShowFunction('Invalid day value!');
-        // неверное значение дней
+        errorsForPopup.push('- Invalid day value!')
+        // popupShowFunction('Invalid day value!');
     }
 
     // проверка значения месяца
@@ -153,8 +156,8 @@ button.addEventListener("click", function (event) {
         document.getElementById("monthError").textContent = errorText;
         const input = document.getElementById('monthInput');
         input.style.border = errorBorderStyle;
-        popupShowFunction('Invalid month value!');
-        // неверное значение месяца
+        // popupShowFunction('Invalid month value!');
+        errorsForPopup.push('- Invalid month value!');
     }
 
     // проверка значения года
@@ -169,14 +172,15 @@ button.addEventListener("click", function (event) {
         document.getElementById("yearError").textContent = errorText;
         const input = document.getElementById('yearInput');
         input.style.border = errorBorderStyle;
-        popupShowFunction('Invalid year value!');
-        // неверное значение года!
+        // popupShowFunction('Invalid year value!');
+        errorsForPopup.push('- Invalid year value!');
     }
 
     // далее, если какой-то элемент получил ошибку при неверном значении, функция останавливается
     if(document.getElementById("yearError").textContent === errorText ||
         document.getElementById("monthError").textContent === errorText ||
         document.getElementById("dayError").textContent === errorText){
+        popupShowFunction(errorsForPopup);
         return;
     } else {
         const popup = document.getElementById("popupText");
@@ -197,7 +201,8 @@ button.addEventListener("click", function (event) {
         monthInput.style.border = errorBorderStyle;
         const yearInput = document.getElementById('yearInput');
         yearInput.style.border = errorBorderStyle;
-        popupShowFunction('The entered date cannot be greater than the current one!');
+        errorsForPopup.push('- The entered date cannot be greater than the current one!')
+        popupShowFunction(errorsForPopup);
         // вводимая дата не может быть больше текущей!
         return;
     }
