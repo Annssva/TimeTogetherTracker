@@ -83,6 +83,7 @@ $mainFont: 'Poppins';
                 border: 3px solid black;
               }
             }
+
             #yearInput{
               width: 3.3em;
             }
@@ -91,7 +92,7 @@ $mainFont: 'Poppins';
               height: 0.5em;
               margin-block-start: 0;
               margin-block-end: 0;
-              font-size: 0.64em;
+              font-size: 0.63em;
               font-family: $mainFont;
             }
           }
@@ -127,6 +128,7 @@ $mainFont: 'Poppins';
           display: flex;
           flex-direction: row;
           align-items: center;
+          min-height: 49.5px;
           .resultText{
             margin: 0 0 0.5em 0;
             font-family: $mainFont;
