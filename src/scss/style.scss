@@ -159,27 +159,24 @@ $mainFont: 'Poppins';
     }
   }
   .popup {
-  //  position: fixed;
-  //  top: 43.7%;
-  //  left: 80vw;
     .popupError {
       visibility: hidden;
       width: 160px;
       background-color: red;
       color: #fff;
-      text-align: center;
+      text-align: left;
       border-radius: 6px;
-      padding: 8px 0;
+      padding: 8px;
       z-index: 1;
       position: fixed;
-      top: 43%;
+      top: 41%;
       left: 80vw;
       font-family: $mainFont;
       // Popup arrow
       &::after {
         content: "";
         position: absolute;
-        top: 25%;
+        top: 9px;
         right: 101%;
         margin-right: -5px;
         border-width: 10px;
