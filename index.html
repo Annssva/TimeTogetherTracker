@@ -10,7 +10,7 @@
   <body>
     <div id="backgroundContainer">
       <h1 id="title">TimeTogetherTracker</h1>
-      <div id="mainContainer">
+      <div id="mainContainerID" class="mainContainer">
         <div id="loversContainer">
           <img class="avatar" id="avatar1" src="/img/blankAvatar.png" alt="avatar"/>
           <h1 id="plus">+</h1>
@@ -35,26 +35,8 @@
               <button id="button" type="submit" class="formButton"></button>
             </form>
           </div>
-          <hr>
-          <div id="resultAges">
-            <div id="rowFullAge">
-              <h1 class='resultText' id="relationshipAgeYears"></h1>
-              <h1 class='resultText' id="textFullYears">-</h1>
-              <h1 class='resultText' id="relationshipAgeMonths"></h1>
-              <h1 class='resultText' id="textFullMonths"></h1>
-              <h1 class='resultText' id="relationshipAgeDays"></h1>
-              <h1 class='resultText' id="textFullDays"></h1>
-            </div>
-            <h3 class="orText">or</h3>
-            <div id="rowAgeInMonth">
-              <h1 class='resultText' id="relationshipAgeInMonth"></h1>
-              <h1 class='resultText' id="textMonth">-</h1>
-            </div>
-            <h3 class="orText">or</h3>
-            <div id="rowAgeInDays">
-              <h1 class='resultText' id="relationshipAgeInDays"></h1>
-              <h1 class='resultText' id="textDays">-</h1>
-            </div>
+          <hr class="hrClass" id="hrLine">
+          <div class='resultDiv' id="resultAges">
 
           </div>
 
@@ -62,7 +44,7 @@
 
       </div>
       <div class="popup" id="popupContainer">
-        <span class='popupError' id="popupText" >Error text...</span>
+        <span class='popupError' id="popupText" ></span>
       </div>
     </div>
     <script type="module" src="/src/js/relationshipAgeCalculation.js"></script>
