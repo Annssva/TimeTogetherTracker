@@ -22,20 +22,20 @@ $mainFont: 'Poppins';
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   #title{
     font-size: 5em;
     color: #ce4f71;
     font-family: $mainFont;
   }
-  #mainContainer {
+  .mainContainer {
+    padding: 2em 0 2em 0;
+    margin-bottom: 30vh;
     background-color: white;
     box-shadow: 20px 15px 3px #c9b5b6;
     width: 50vw;
     border-radius: 3em;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transition: margin-bottom 0.3s;
     #loversContainer {
       display: flex;
       flex-direction: row;
@@ -116,14 +116,23 @@ $mainFont: 'Poppins';
           }
         }
       }
-      hr {
+      .hrClass {
+        visibility: hidden;
         border: 1px solid #ccc;
-        margin: 0 0 0.6em 0;
+        margin: 1em 0 1em 0;
       }
-      #resultAges{
+      .hrShow{
+        visibility: visible;
+      }
+
+      .resultDiv{
+        visibility: hidden;
         display: flex;
         flex-direction: column;
         align-items: center;
+        opacity: 0;
+        max-height: 0;
+        transition: opacity 0.3s, max-height 0.3s, visibility 0s 0.3s;
         #rowAgeInMonth, #rowAgeInDays, #rowFullAge{
           display: flex;
           flex-direction: row;
@@ -155,8 +164,18 @@ $mainFont: 'Poppins';
             font-size: 25px;
           }
       }
+      .show-result {
+        opacity: 1;
+        max-height: 207.9px;
+        visibility: visible;
+        transition-delay: 0s;
+      }
 
     }
+  }
+  .newMarginContainer{
+    margin-bottom: 12vh;
+
   }
   .popup {
     .popupError {
@@ -169,7 +188,7 @@ $mainFont: 'Poppins';
       padding: 8px;
       z-index: 1;
       position: fixed;
-      top: 41%;
+      top: 52%;
       left: 80vw;
       font-family: $mainFont;
       // Popup arrow
@@ -185,14 +204,9 @@ $mainFont: 'Poppins';
         transform: rotate(90deg);
       }
     }
-    .show {
+    .showPopup {
       visibility: visible;
       animation: fadeIn 1s;
-      //.popupError{
-      //
-      //}
-
-      //-webkit-animation: fadeIn 1s;
 
     }
   }
