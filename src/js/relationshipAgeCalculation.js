@@ -41,7 +41,50 @@ function calculateDifference(difInDays, difInMonth, difInYears){
 function popupShowFunction(errors) {
     const popup = document.getElementById("popupText");
     popup.innerHTML = errors.join('<br>');
-    popup.classList.add("show");
+    popup.classList.add("showPopup");
+}
+
+// функция, которая анимирует вывод результата
+function animateResults(
+    fullYears,
+    fullYearsText,
+    fullMonths,
+    fullMonthsText,
+    fullDays,
+    fullDaysText,
+    inMonths,
+    inMonthsText,
+    inDays,
+    inDayTexts
+) {
+    const mainContainer = document.getElementById('mainContainerID');
+    mainContainer.classList.add('newMarginContainer');
+
+    const hr = document.getElementById('hrLine');
+    hr.classList.add('hrShow');
+
+    const resultAgesElement = document.getElementById("resultAges");
+    resultAgesElement.innerHTML = `
+    <div id="rowFullAge">
+      <h1 class='resultText' id="relationshipAgeYears">${fullYears}</h1>
+      <h1 class='resultText' id="textFullYears">${fullYearsText}</h1>
+      <h1 class='resultText' id="relationshipAgeMonths">${fullMonths}</h1>
+      <h1 class='resultText' id="textFullMonths">${fullMonthsText}</h1>
+      <h1 class='resultText' id="relationshipAgeDays">${fullDays}</h1>
+      <h1 class='resultText' id="textFullDays">${fullDaysText}</h1>
+    </div>
+    <h3 class="orText">or</h3>
+    <div id="rowAgeInMonth">
+      <h1 class='resultText' id="relationshipAgeInMonth">${inMonths}</h1>
+      <h1 class='resultText' id="textMonth">${inMonthsText}</h1>
+    </div>
+    <h3 class="orText">or</h3>
+    <div id="rowAgeInDays">
+      <h1 class='resultText' id="relationshipAgeInDays">${inDays}</h1>
+      <h1 class='resultText' id="textDays">${inDayTexts}</h1>
+    </div>
+  `;
+    resultAgesElement.classList.add("show-result");
 }
 
 // основная функция, которая обрабатывает введенные значения в поля и запускает функцию расчета возраста отношений,
@@ -49,19 +92,25 @@ function popupShowFunction(errors) {
 button.addEventListener("click", function (event) {
     event.preventDefault(); // Prevent the form from submitting
 
-    document.getElementById('relationshipAgeYears').textContent = '';
-    document.getElementById('textFullYears').textContent = '-';
-    document.getElementById('relationshipAgeMonths').textContent = '';
-    document.getElementById('textFullMonths').textContent = '';
-    document.getElementById('relationshipAgeDays').textContent = '';
-    document.getElementById('textFullDays').textContent = '';
-    document.getElementById('relationshipAgeInMonth').textContent = '';
-    document.getElementById('textMonth').textContent = '-';
-    document.getElementById('relationshipAgeInDays').textContent = '';
-    document.getElementById('textDays').textContent = '';
-
+    // обнуление ошибок
     let errorsForPopup = [];
 
+    // скрытие элментов для вывода результатов, если они показаны
+    const popup = document.getElementById("popupText");
+    if (popup.classList.contains('showPopup')) {
+        popup.classList.remove("showPopup");
+    }
+
+    const mainContainer = document.getElementById('mainContainerID');
+    const hr = document.getElementById('hrLine');
+    const resultAgesElement = document.getElementById("resultAges");
+    if (mainContainer.classList.contains('newMarginContainer')) {
+        mainContainer.classList.remove("newMarginContainer");
+        hr.classList.remove('hrShow');
+        resultAgesElement.classList.remove("show-result");
+    }
+
+    // проверка на то, ввел ли пользователь значения
     if(document.getElementById("yearInput").value === 'YYYY' &&
         document.getElementById("monthInput").value === 'MM' &&
         document.getElementById("dayInput").value === 'DD'){
@@ -69,6 +118,7 @@ button.addEventListener("click", function (event) {
         document.getElementById("yearError").textContent = errorText;
         document.getElementById("monthError").textContent = errorText;
         document.getElementById("dayError").textContent = errorText;
+
         const dayInput = document.getElementById('dayInput');
         dayInput.style.border = errorBorderStyle;
         const monthInput = document.getElementById('monthInput');
@@ -97,7 +147,6 @@ button.addEventListener("click", function (event) {
             && document.getElementById("dayInput").value <= 31)){
         dayValue = document.getElementById("dayInput").value;
         console.log("Day:", dayValue);
-
         document.getElementById("dayError").textContent = "";
         const input = document.getElementById('dayInput');
         input.style.border = normalBorderStyle;
@@ -140,7 +189,6 @@ button.addEventListener("click", function (event) {
         const input = document.getElementById('dayInput');
         input.style.border = errorBorderStyle;
         errorsForPopup.push('- Invalid day value!')
-        // popupShowFunction('Invalid day value!');
     }
 
     // проверка значения месяца
@@ -156,7 +204,6 @@ button.addEventListener("click", function (event) {
         document.getElementById("monthError").textContent = errorText;
         const input = document.getElementById('monthInput');
         input.style.border = errorBorderStyle;
-        // popupShowFunction('Invalid month value!');
         errorsForPopup.push('- Invalid month value!');
     }
 
@@ -172,7 +219,6 @@ button.addEventListener("click", function (event) {
         document.getElementById("yearError").textContent = errorText;
         const input = document.getElementById('yearInput');
         input.style.border = errorBorderStyle;
-        // popupShowFunction('Invalid year value!');
         errorsForPopup.push('- Invalid year value!');
     }
 
@@ -182,9 +228,6 @@ button.addEventListener("click", function (event) {
         document.getElementById("dayError").textContent === errorText){
         popupShowFunction(errorsForPopup);
         return;
-    } else {
-        const popup = document.getElementById("popupText");
-        popup.classList.remove("show");
     }
 
     // если ошибок пока не было, то собирается полная дата и проверяется, не является ли эта дата большей,
@@ -203,7 +246,6 @@ button.addEventListener("click", function (event) {
         yearInput.style.border = errorBorderStyle;
         errorsForPopup.push('- The entered date cannot be greater than the current one!')
         popupShowFunction(errorsForPopup);
-        // вводимая дата не может быть больше текущей!
         return;
     }
 
@@ -216,87 +258,128 @@ button.addEventListener("click", function (event) {
     const fullAgeMonths = calculateDifference(daysDifference, monthsDifference, yearsDifference)[1];
     const fullAgeDays = calculateDifference(daysDifference, monthsDifference, yearsDifference)[0]
 
+    // переменные для вывода результатов
+    let fullYearsRes;
+    let fullYearsTextRes;
+    let fullMonthsRes;
+    let fullMonthsTextRes;
+    let fullDaysRes;
+    let fullDaysTextRes;
+    let inMonthsRes;
+    let inMonthsTextRes;
+    let inDaysRes;
+    let inDayTextsRes;
+
+    // проверка на нулевые значения и подгон вывода под них
     if (fullAgeYears !== 0 &&
         fullAgeMonths !== 0 &&
         fullAgeDays !== 0
         ){
-        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
-        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
-        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
-        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
-        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
-        document.getElementById('textFullDays').textContent = '\u00A0days';
+        fullYearsRes = `${fullAgeYears}`;
+        fullYearsTextRes = '\u00A0years\u00A0';
+        fullMonthsRes = `${fullAgeMonths}`;
+        fullMonthsTextRes = '\u00A0months\u00A0';
+        fullDaysRes = `${fullAgeDays}`;
+        fullDaysTextRes = '\u00A0days';
+
     } else if (fullAgeYears === 0 &&
         fullAgeMonths !== 0 &&
         fullAgeDays !== 0
     ){
-        document.getElementById('relationshipAgeYears').textContent = '';
-        document.getElementById('textFullYears').textContent = '';
-        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
-        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
-        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
-        document.getElementById('textFullDays').textContent = '\u00A0days';
+        fullYearsRes = '';
+        fullYearsTextRes = '';
+        fullMonthsRes = `${fullAgeMonths}`;
+        fullMonthsTextRes = '\u00A0months\u00A0';
+        fullDaysRes = `${fullAgeDays}`;
+        fullDaysTextRes = '\u00A0days';
+
     }else if (fullAgeYears !== 0 &&
         fullAgeMonths === 0 &&
         fullAgeDays !== 0
     ){
-        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
-        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
-        document.getElementById('relationshipAgeMonths').textContent = '';
-        document.getElementById('textFullMonths').textContent = '';
-        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
-        document.getElementById('textFullDays').textContent = '\u00A0days';
+        fullYearsRes = `${fullAgeYears}`;
+        fullYearsTextRes = '\u00A0years\u00A0';
+        fullMonthsRes = '';
+        fullMonthsTextRes = '';
+        fullDaysRes = `${fullAgeDays}`;
+        fullDaysTextRes = '\u00A0days';
+
     } else if (fullAgeYears !== 0 &&
         fullAgeMonths !== 0 &&
         fullAgeDays === 0
     ){
-        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
-        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
-        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
-        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
-        document.getElementById('relationshipAgeDays').textContent = '';
-        document.getElementById('textFullDays').textContent = '';
+        fullYearsRes = `${fullAgeYears}`;
+        fullYearsTextRes = '\u00A0years\u00A0';
+        fullMonthsRes = `${fullAgeMonths}`;
+        fullMonthsTextRes = '\u00A0months\u00A0';
+        fullDaysRes = '';
+        fullDaysTextRes = '';
+
     } else if (fullAgeYears === 0 &&
         fullAgeMonths === 0 &&
         fullAgeDays !== 0
     ){
-        document.getElementById('relationshipAgeYears').textContent = '';
-        document.getElementById('textFullYears').textContent = '';
-        document.getElementById('relationshipAgeMonths').textContent = '';
-        document.getElementById('textFullMonths').textContent = '';
-        document.getElementById('relationshipAgeDays').textContent = `${fullAgeDays}`;
-        document.getElementById('textFullDays').textContent = '\u00A0days';
+        fullYearsRes = '';
+        fullYearsTextRes = '';
+        fullMonthsRes = '';
+        fullMonthsTextRes = '';
+        fullDaysRes = `${fullAgeDays}`;
+        fullDaysTextRes = '\u00A0days';
+
     } else if (fullAgeYears === 0 &&
         fullAgeMonths !== 0 &&
         fullAgeDays === 0
     ){
-        document.getElementById('relationshipAgeYears').textContent = '';
-        document.getElementById('textFullYears').textContent = '';
-        document.getElementById('relationshipAgeMonths').textContent = `${fullAgeMonths}`;
-        document.getElementById('textFullMonths').textContent = '\u00A0months\u00A0';
-        document.getElementById('relationshipAgeDays').textContent = '';
-        document.getElementById('textFullDays').textContent = '';
+        fullYearsRes = '';
+        fullYearsTextRes = '';
+        fullMonthsRes = `${fullAgeMonths}`;
+        fullMonthsTextRes = '\u00A0months\u00A0';
+        fullDaysRes = '';
+        fullDaysTextRes = '';
+
     } else if (fullAgeYears !== 0 &&
         fullAgeMonths === 0 &&
         fullAgeDays === 0
     ){
-        document.getElementById('relationshipAgeYears').textContent = `${fullAgeYears}`;
-        document.getElementById('textFullYears').textContent = '\u00A0years\u00A0';
-        document.getElementById('relationshipAgeMonths').textContent = '';
-        document.getElementById('textFullMonths').textContent = '';
-        document.getElementById('relationshipAgeDays').textContent = '';
-        document.getElementById('textFullDays').textContent = '';
+        fullYearsRes = `${fullAgeYears}`;
+        fullYearsTextRes = '\u00A0years\u00A0';
+        fullMonthsRes = '';
+        fullMonthsTextRes = '';
+        fullDaysRes = '';
+        fullDaysTextRes = '';
+
     } else{
-        document.getElementById('relationshipAgeYears').textContent = '';
-        document.getElementById('textFullYears').textContent = '';
-        document.getElementById('relationshipAgeMonths').textContent = '';
-        document.getElementById('textFullMonths').textContent = '';
-        document.getElementById('relationshipAgeDays').textContent = ``;
-        document.getElementById('textFullDays').textContent = 'not enough time has passed :(';
+        errorsForPopup.push('- Not enough time has passed, come back tomorrow!')
+        popupShowFunction(errorsForPopup);
+        const popup = document.getElementById("popupText");
+        if (popup.classList.contains('showPopup')) {
+            popup.classList.remove("showPopup");
+        }
+
+        const mainContainer = document.getElementById('mainContainerID');
+        const hr = document.getElementById('hrLine');
+        const resultAgesElement = document.getElementById("resultAges");
+        if (mainContainer.classList.contains('newMarginContainer')) {
+            mainContainer.classList.remove("newMarginContainer");
+            hr.classList.remove('hrShow');
+            resultAgesElement.classList.remove("show-result");
+        }
     }
 
-    document.getElementById('relationshipAgeInMonth').textContent = `${monthsDifference} `;
-    document.getElementById('textMonth').textContent = '\u00A0months';
-    document.getElementById('relationshipAgeInDays').textContent = `${daysDifference} `;
-    document.getElementById('textDays').textContent = '\u00A0days';
+    inMonthsRes = `${monthsDifference} `;
+    inMonthsTextRes = '\u00A0months';
+    inDaysRes = `${daysDifference} `;
+    inDayTextsRes = '\u00A0days';
+
+    // вызов функции для вывода результатов
+    animateResults(fullYearsRes,
+        fullYearsTextRes,
+        fullMonthsRes,
+        fullMonthsTextRes,
+        fullDaysRes,
+        fullDaysTextRes,
+        inMonthsRes,
+        inMonthsTextRes,
+        inDaysRes,
+        inDayTextsRes);
 });
