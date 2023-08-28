@@ -225,68 +225,77 @@ $mainFont: 'Poppins';
     .mainContainer {
       padding: 2em 0 1em 0;
       margin-bottom: 30vh;
-      width: 85vw;
+      width: 90vw;
       border-radius: 2em;
+
       #loversContainer {
         margin: 0 0 0.4em 0;
         .avatar {
           height: 80px;
         }
-        #plus{
+        #plus {
           font-size: 30px;
         }
       }
 
       #dates {
-        #dateForm{
+        #dateForm {
           display: flex;
           flex-direction: column;
           align-items: center;
-          #form{
+
+          #form {
             display: flex;
             flex-direction: row;
             align-items: center;
-            label{
+
+            label {
               padding: 0.7em 0.4em 0.3em 0;
-              .formInput{
-                &:focus-visible{
+
+              .formInput {
+                &:focus-visible {
                   border: 3px solid black;
                 }
               }
-              .error{
+
+              .error {
                 height: 0.8em;
                 font-size: 0.7em;
               }
             }
-            #button{
+
+            #button {
               height: 6vh;
               width: 6vh;
               margin: 0.3em 0 0.5em 1.5em;
               background-image: url("/public/img/button.png");
-              &:hover{
+
+              &:hover {
                 background-image: url("/public/img/hoverButton.png");
               }
-              &:active{
+
+              &:active {
                 background-image: url("/public/img/activeButton.png");
               }
+            }
           }
         }
+          .resultDiv {
+            #rowAgeInMonth, #rowAgeInDays, #rowFullAge {
+              .resultText {
+                font-size: 23px;
+              }
 
-        .resultDiv{
-          #rowAgeInMonth, #rowAgeInDays, #rowFullAge{
-            min-height: 49.5px;
-            .resultText{
-              font-size: 21px;
-            }
-            #relationshipAgeInMonth, #relationshipAgeInDays, #relationshipAgeYears, #relationshipAgeMonths, #relationshipAgeDays{
-              font-size: 26px;
+              #relationshipAgeInMonth, #relationshipAgeInDays, #relationshipAgeYears, #relationshipAgeMonths, #relationshipAgeDays {
+                font-size: 27px;
+              }
             }
           }
-        }
       }
-    }
-    .newMarginContainer{
-      margin-bottom: 12vh;
+
+      .newMarginContainer {
+        margin-bottom: 12vh;
+      }
     }
     .popup {
       .popupError {
@@ -313,7 +322,7 @@ $mainFont: 'Poppins';
       }
     }
   }
-}}
+}
 
 //@media screen and (min-width: 769px) and (max-width: 1024px) {
 //  /* Стили для планшетов и других средних экранов */
